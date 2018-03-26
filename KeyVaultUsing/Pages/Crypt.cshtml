@@ -1,0 +1,34 @@
+﻿@page
+@model CryptModel
+@using System.Text
+@{
+    ViewData["Title"] = "Encrypt/Decrypt";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <form method="POST">
+        <div>Inputtext that should be encrypted and decrypted:</div>
+        <div>@Html.TextAreaFor(m => m.Input, 2, 50, null)</div>
+        <div>KeyIdentifier</div>
+        <div>@Html.TextAreaFor(m => m.KeyIdentifier, 2, 50, null)</div>
+        <input type="submit" />
+    </form>
+</div>
+<div class="row">
+    <p><b>Key:</b> @Model.Key</p>
+    @*<p><b>Encrypted Bytes:</b> @if (Model.cryption.Encrypted != null) {
+                @foreach (byte b in Model.cryption.Encrypted) {
+                    @b.ToString()
+                    @:,
+                }
+            }
+        </p>*@
+    <p>
+        <b>Encrypted as UTF8:</b> @if (Model.Encrypted != null)
+        {@Encoding.UTF8.GetString(Model.Encrypted);
+    }
+    </p>
+    <p><b>Decrypted Text:</b> @Model.Decrypted</p>
+</div>

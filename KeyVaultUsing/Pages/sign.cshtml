@@ -1,0 +1,27 @@
+﻿@page
+@model SignModel
+@using System.Text
+@{
+    ViewData["Title"] = "Sign and Validate";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <form method="POST">
+        <div>Inputtext that should be signed and validated:</div>
+        <div>@Html.TextAreaFor(m => m.Input, 2, 50, null)</div>
+        <div>KeyIdentifier</div>
+        <div>@Html.TextAreaFor(m => m.KeyIdentifier, 2, 50, null)</div>
+        <input type="submit" />
+    </form>
+</div>
+<div class="row">
+    <p><b>Key:</b> @Model.Key</p>
+    <p>
+        <b>Signature as UTF8:</b> @if (Model.Signature != null)
+        {@Encoding.UTF8.GetString(Model.Signature);
+    }
+    </p>
+    <p><b>Signature valid?</b> @Model.SignatureValidation</p>
+</div>
